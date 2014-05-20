@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>fancyBox - iframe demo</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div id="myJershy">
+<img id='0 img' src="./0.jpg" style="display:none"/>
+<img id='1 img' src="./1.jpg" style="display:none"/>
+<img id='2 img' src="./2.jpg" style="display:none"/>
+<img id='3 img' src="./3.jpg" style="display:none"/>
+</div>
+
+<center>
+<canvas id="myCanvas" width="400" height="400"/>
+</center>
+
+<script type="text/javascript" src="../lib/jquery-1.10.1.min.js"></script>
+<script language='javascript'>
+var i=0;
+var j=0;
+var counter = 0;
+var per_width = 200;
+var per_height = 200;
+var all_width = 2 * per_width;
+var all_height = 2 * per_height;
+$('#myJershy').children('img').each(function(){
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    var img=document.getElementById($(this).attr('id'));
+    ctx.drawImage(img, i, j, per_width, per_height);
+	counter++;
+	if(counter == 1) {i=per_width;j=0;}
+	if(counter == 2) {i=0;j=per_height;}
+	if(counter == 3) {i=per_width;j=per_height;}
+});
+$('body').on('contextmenu', '#myCanvas', function(e){ return false; });
+</script>
+
+</body>
+</html>
