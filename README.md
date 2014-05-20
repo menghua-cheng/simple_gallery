@@ -1,9 +1,10 @@
 Simple Gallery
 ===============
 
-This is a simple gallery built by
+This is a simple gallery website. It is built by
   * fancybox  http://fancybox.net/
   * free html template shutterpress : http://www.tekniksivama.com/
 
-And we use canvas to show picrute and block right click for user download.
+We use html5 canvas to show pictures and block right click for user download.
+Click "index.html" to visit whole site.
 
