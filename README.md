@@ -17,7 +17,7 @@ The format of config/image-list.json is as following :
 ```json
 {
     "file_list": {
-        <image file base name> : [
+        <image file base name/compressed image name> : [
             <width>x<height>,
             <num of horizontal parts>x<num of vertical parts>
         ],
@@ -27,8 +27,8 @@ The format of config/image-list.json is as following :
 ```
 
 For example, If you have 
-* a.jpg : 800 x 480 and is split to 16 parts ---> a_00.jpg to a_15.jpg
-* b.png : 1920 x 1080 and is split to 12 parts (3x4) ---> b_00.png to b_11.png
+* a.jpg : 800 x 480 and is split to 16 parts ---> a_00.jpg to a_15.jpg, with a compressed image called a.jpg
+* b.png : 1920 x 1080 and is split to 12 parts (3x4) ---> b_00.png to b_11.png, with a compressed image called b.png
 
 The image-list.json is like :
 
