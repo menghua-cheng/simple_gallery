@@ -16,13 +16,11 @@ The gallery shows many images under **image/** directory, and you should list al
 The format of config/image-list.json is as following :  
 ```json
 {
-    "file_list": {
         <image file base name/compressed image name> : [
             <width>x<height>,
             <num of horizontal parts>x<num of vertical parts>
         ],
         ...
-    }
 }
 ```
 
@@ -34,16 +32,14 @@ The image-list.json is like :
 
 ```json
 {
-    "file_list": {
         "a.jpg" : [
-            800x480,
-            4x4
+            "800x480",
+            "4x4"
         ],
         "b.png" : [
-            1920x1080,
-            4x3
+            "1920x1080,"
+            "4x3"
         ],
-    }
 }
 ```
 
