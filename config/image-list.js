@@ -1,3 +1,4 @@
+image_list_json = 
 {
         "images/IMAG0063_1.jpg": [
             "2688x1520",
@@ -12,3 +13,4 @@
             "4x4"
         ]
 }
+;

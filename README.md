@@ -11,7 +11,7 @@ Click "index.html" to visit whole site.
 The format of image-list.json
 =============================
 
-The gallery shows many images under **image/** directory, and you should list all the wanted images in **config/image-list.json**.
+The gallery shows many images under **image/** directory, and you should list all the wanted images in **config/image-list.js**.
 
 The format of config/image-list.json is as following :  
 ```json

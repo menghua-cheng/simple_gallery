@@ -243,9 +243,25 @@
 		<a class="fancybox fancybox.iframe" id='imag15_iframe' name='imag15_iframe' href="#" data-fancybox-group="gallery" title="img15"><img id='img15' name='img15' src='../images/original.jpg' width='140'></a>
 		<br/>
 	</p>
-	<script type="text/javascript" src="js/helper.js"></script>
+	<script type="text/javascript" src="../config/image-list.js"></script>
+	<script type="text/javascript" src="../js/helper.js"></script>
 	<script type='text/javascript'>
 		$(document).ready(function() {
+		  // get page index and compute first and last data
+		  var max_base = configMaxBase();
+		  var first_index = parseInt(getPage()/16);
+		  var last_index = (parseInt(first_index+16) > getNumofImages()) ? getNumofImages() : parseInt(first_index+16);
+
+		  // modify all contents
+		  var i = 0;
+		  for(var idx=first_index; idx < last_index ; idx++, i++) {
+			$('#img'+i).attr('src', get_compressed_image_from_config(idx));
+		  }
+
+		  for(i ; i < 16 ; i++) {
+			$('#img'+i).remove();
+		  }
+
 		});
 	</script>
 
