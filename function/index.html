@@ -256,6 +256,7 @@
 		  var i = 0;
 		  for(var idx=first_index; idx < last_index ; idx++, i++) {
 			$('#img'+i).attr('src', get_compressed_image_from_config(idx));
+			$('#imag'+i+'_iframe').attr('href', get_iframe_from_config(idx));
 		  }
 
 		  for(i ; i < 16 ; i++) {

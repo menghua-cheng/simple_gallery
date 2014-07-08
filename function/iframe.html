@@ -8,36 +8,56 @@
 <body>
 
 <div id="myJershy">
-<img id='0 img' src="./0.jpg" style="display:none"/>
-<img id='1 img' src="./1.jpg" style="display:none"/>
-<img id='2 img' src="./2.jpg" style="display:none"/>
-<img id='3 img' src="./3.jpg" style="display:none"/>
 </div>
 
 <center>
-<canvas id="myCanvas" width="400" height="400"/>
+<canvas id="myCanvas" width="0" height="0"/>
 </center>
 
 <script type="text/javascript" src="../lib/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="../config/image-list.js"></script>
+<script type="text/javascript" src="../js/helper.js"></script>
+
 <script language='javascript'>
-var i=0;
-var j=0;
+
 var counter = 0;
-var per_width = 200;
-var per_height = 200;
-var all_width = 2 * per_width;
-var all_height = 2 * per_height;
+var all_i = getUrlMaxi();
+var all_j = getUrlMaxj();
+var all_width = getUrlWidth();
+var all_height = getUrlHeight();
+var per_width = parseInt(all_width/all_i);
+var per_height = parseInt(all_height/all_j);
+var image_base = getUrlImageBase();
+
+$('#myCanvas').attr('width', all_width);
+$('#myCanvas').attr('height', all_height);
+
+for(var i=0;i<parseInt(all_i * all_j);i++) {
+  var prefix = image_base.substr(0, image_base.lastIndexOf('.')) || image_base;
+  var postfix = '.'+image_base.split('.').pop();
+  var image_html = "<img id='"+i+"' src='"+prefix+"_"+((i<10) ? "0"+i : i)+postfix+"' width='"+per_width+"' height='"+per_height+"' style='display:none'/>";
+  $('#myJershy').prepend(image_html);
+}
+
+setTimeout(function() {
+
 $('#myJershy').children('img').each(function(){
+
     var c=document.getElementById("myCanvas");
     var ctx=c.getContext("2d");
     var img=document.getElementById($(this).attr('id'));
+
+	var i = parseInt(parseInt($(this).attr('id'))%all_i) * per_width;
+	var j = parseInt(parseInt($(this).attr('id'))/all_i) * per_height;
+
     ctx.drawImage(img, i, j, per_width, per_height);
-	counter++;
-	if(counter == 1) {i=per_width;j=0;}
-	if(counter == 2) {i=0;j=per_height;}
-	if(counter == 3) {i=per_width;j=per_height;}
+	counter += parseInt(per_width);
+
+	//alert("("+i+", "+j+") "+($(this).attr('id')));
 });
 $('body').on('contextmenu', '#myCanvas', function(e){ return false; });
+
+}, 100);
 </script>
 
 </body>

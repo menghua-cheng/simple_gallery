@@ -1,7 +1,11 @@
 function getUrlVars() {
   var vars = {};
   var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-	  vars[key] = value;
+		vars[key] = value;
+	  });
+
+  var parts = window.location.href.replace(/&amp;+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
 	  });
 
   return vars;
@@ -17,6 +21,26 @@ function getNumofImages() {
 
 function configMaxBase() {
   return Math.round(getNumofImages()/16);
+}
+
+function getUrlWidth() {
+  return parseInt(getUrlVars()['width'] || 0);
+}
+
+function getUrlHeight() {
+  return parseInt(getUrlVars()['height'] || 0);
+}
+
+function getUrlImageBase() {
+  return getUrlVars()['image'];
+}
+
+function getUrlMaxi() {
+  return parseInt(getUrlVars()['maxi'] || 0);
+}
+
+function getUrlMaxj() {
+  return parseInt(getUrlVars()['maxj'] || 0);
 }
 
 // ----------------------------------------------------- //
@@ -61,4 +85,17 @@ function nexta_href_url() {
 
 function get_compressed_image_from_config(idx) {
   return "../"+(Object.keys(image_list_json)[idx]);
+}
+
+function get_iframe_from_config(idx) {
+  var iframe_url = './iframe.html';
+  var json_key = Object.keys(image_list_json)[idx];
+
+  iframe_url += "?image=../"+json_key;
+  iframe_url += "&width="+((image_list_json[json_key][0].split('x'))[0]);
+  iframe_url += "&height="+((image_list_json[json_key][0].split('x'))[1]);
+  iframe_url += "&maxi="+((image_list_json[json_key][1].split('x'))[0]);
+  iframe_url += "&maxj="+((image_list_json[json_key][1].split('x'))[1]);
+
+  return iframe_url;
 }
