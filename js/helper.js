@@ -16,6 +16,7 @@ function getPage() {
 }
 
 function getNumofImages() {
+  Object.keys=Object.keys||function(o,k,r){r=[];for(k in o)r.hasOwnProperty.call(o,k)&&r.push(k);return r};
   return Object.keys(image_list_json).length;
 }
 
@@ -84,11 +85,13 @@ function nexta_href_url() {
 }
 
 function get_compressed_image_from_config(idx) {
+  Object.keys=Object.keys||function(o,k,r){r=[];for(k in o)r.hasOwnProperty.call(o,k)&&r.push(k);return r};
   return "../"+(Object.keys(image_list_json)[idx]);
 }
 
 function get_iframe_from_config(idx) {
   var iframe_url = './iframe.html';
+  Object.keys=Object.keys||function(o,k,r){r=[];for(k in o)r.hasOwnProperty.call(o,k)&&r.push(k);return r};
   var json_key = Object.keys(image_list_json)[idx];
 
   iframe_url += "?image=../"+json_key;
