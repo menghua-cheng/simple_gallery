@@ -20,7 +20,6 @@
 
 <script language='javascript'>
 
-var counter = 0;
 var all_i = getUrlMaxi();
 var all_j = getUrlMaxj();
 var all_width = getUrlWidth();
@@ -28,6 +27,14 @@ var all_height = getUrlHeight();
 var per_width = parseInt(all_width/all_i);
 var per_height = parseInt(all_height/all_j);
 var image_base = getUrlImageBase();
+
+var result_width = 400;
+var scale_factor = result_width / all_width;
+
+all_width *= scale_factor;
+all_height *= scale_factor;
+per_width *= scale_factor;
+per_height *= scale_factor;
 
 $('#myCanvas').attr('width', all_width);
 $('#myCanvas').attr('height', all_height);
@@ -51,7 +58,6 @@ $('#myJershy').children('img').each(function(){
 	var j = parseInt(parseInt($(this).attr('id'))/all_i) * per_height;
 
     ctx.drawImage(img, i, j, per_width, per_height);
-	counter += parseInt(per_width);
 
 	//alert("("+i+", "+j+") "+($(this).attr('id')));
 });

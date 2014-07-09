@@ -216,12 +216,13 @@
 	<h1>sailplaneTW gallery test</h1>
 
 	<h3>try try see ~</h3>
-	<p>
+    <p><div id='all_content'>
 		<!--<a class="fancybox" href="0.jpg" data-fancybox-group="gallery" title="左上"><img src="0.jpg" alt="" width='120'/></a>
 		<a class="fancybox" href="1.jpg" data-fancybox-group="gallery" title="右上"><img src="1.jpg" alt="" width='120'/></a>
 		<a class="fancybox" href="2.jpg" data-fancybox-group="gallery" title="左下"><img src="2.jpg" alt="" /></a>
 		<a class="fancybox" href="3.jpg" data-fancybox-group="gallery" title="右下"><img src="3.jpg" alt="" /></a>
-		<a class="fancybox fancybox.iframe" href="iframe.html" data-fancybox-group="gallery" title="合併"><img src='4_s.jpg' width='150'></a>-->
+        <a class="fancybox fancybox.iframe" href="iframe.html" data-fancybox-group="gallery" title="合併"><img src='4_s.jpg' width='150'></a>-->
+        <!--
 		<a class="fancybox fancybox.iframe" id='imag0_iframe' name='imag0_iframe' href="#" data-fancybox-group="gallery" title="img0"><img id='img0' name='img0' src='../images/original.jpg' width='140'></a>
 		<a class="fancybox fancybox.iframe" id='imag1_iframe' name='imag1_iframe' href="#" data-fancybox-group="gallery" title="img1"><img id='img1' name='img1' src='../images/original.jpg' width='140'></a>
 		<a class="fancybox fancybox.iframe" id='imag2_iframe' name='imag2_iframe' href="#" data-fancybox-group="gallery" title="img2"><img id='img2' name='img2' src='../images/original.jpg' width='140'></a>
@@ -241,7 +242,9 @@
 		<a class="fancybox fancybox.iframe" id='imag13_iframe' name='imag13_iframe' href="#" data-fancybox-group="gallery" title="img13"><img id='img13' name='img13' src='../images/original.jpg' width='140'></a>
 		<a class="fancybox fancybox.iframe" id='imag14_iframe' name='imag14_iframe' href="#" data-fancybox-group="gallery" title="img14"><img id='img14' name='img14' src='../images/original.jpg' width='140'></a>
 		<a class="fancybox fancybox.iframe" id='imag15_iframe' name='imag15_iframe' href="#" data-fancybox-group="gallery" title="img15"><img id='img15' name='img15' src='../images/original.jpg' width='140'></a>
-		<br/>
+        -->
+        </div>
+        <br/>
 	</p>
 	<script type="text/javascript" src="../config/image-list.js"></script>
 	<script type="text/javascript" src="../js/helper.js"></script>
@@ -252,7 +255,15 @@
 		  var first_index = parseInt(getPage()/16);
 		  var last_index = (parseInt(first_index+16) > getNumofImages()) ? getNumofImages() : parseInt(first_index+16);
 
-		  // modify all contents
+          // modify all contents
+          var i = 0;
+          for(var idx=last_index-1; idx >= first_index ; idx--, i++) {
+            var content_html = "<a class='fancybox fancybox.iframe' id='imag"+i+"_iframe' name='imag"+i+"_iframe' href='";
+            content_html += (get_iframe_from_config(idx))+"' data-fancybox-group='gallery' title='img"+(idx)+"'><img id='img"+i+"' ";
+            content_html += "name='img"+i+"' src='"+(get_compressed_image_from_config(idx))+"' width='140'></a>";
+            $('#all_content').prepend(content_html);
+          }
+          /*
 		  var i = 0;
 		  for(var idx=first_index; idx < last_index ; idx++, i++) {
 			$('#img'+i).attr('src', get_compressed_image_from_config(idx));
@@ -261,7 +272,9 @@
 
 		  for(i ; i < 16 ; i++) {
 			$('#img'+i).remove();
-		  }
+			$('#imag'+i+'_iframe').remove();
+            }
+            */
 
 		});
 	</script>
